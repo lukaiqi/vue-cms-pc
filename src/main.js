@@ -4,7 +4,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 // 引入app组件
-import app from './app.vue'
+import app from './App.vue'
 // 引入axios
 import axios from 'axios'
 Vue.prototype.axios = axios
