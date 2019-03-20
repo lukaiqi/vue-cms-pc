@@ -28,7 +28,7 @@
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="changeinfo">修改信息</el-button>
-        <el-button>退出登录</el-button>
+        <el-button @click="logout">退出登录</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -75,7 +75,10 @@ export default {
       });
     },
     logout(){
-        
+        this.$store.commit('logout')
+        setTimeout(() => {
+          this.$router.push('/user/login')
+        }, 1000);
     }
   }
 };

@@ -12,6 +12,9 @@ Vue.prototype.axios = axios
 axios.defaults.baseURL = 'https://lkqblog.cn/'
 // 引入router
 import router from './router.js'
+// 引入cookies
+import cookie from './lib/cookie.js'
+Vue.prototype.cookie = cookie
 // 引入时间字符串格式化
 import moment from 'moment'
 // 全局过滤器
@@ -27,10 +30,18 @@ Vue.use(Vuex)
 // 实例化vuex
 const store = new Vuex.Store({
     state: {
-
+        name: '',
+        token: ''
     },
     mutations: {
-
+        login(state, obj) {
+           cookie.setCookie('name',obj.name),
+           cookie.setCookie('token',obj.token)
+        },
+        logout(state){
+            cookie.delCookie('name'),
+            cookie.delCookie('token')
+        }
     }
 })
 
