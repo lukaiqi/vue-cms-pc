@@ -13,13 +13,72 @@ import Left from './components/common/Left.vue'
 import Footer from './components/common/Footer.vue'
 var router = new VueRouter({
     routes: [
-        {path:'/',redirect:'/blog/bloglist'},
-        {path:'/blog/bloglist',components:{
-            header:Header,
-            left:Left,
-            footer:Footer,
-            main:BlogList
-        }}
+        { path: '/', redirect: '/blog/bloglist' },
+        {
+            path: '/blog/bloglist', components: {
+                header: Header,
+                left: Left,
+                footer: Footer,
+                main: BlogList
+            }
+        },
+        {
+            path: '/blog/bloginfo', components: {
+                header: Header,
+                left: Left,
+                footer: Footer,
+                main: BlogInfo
+            }
+        },
+        {
+            path: '/image', components: {
+                header: Header,
+                left: Left,
+                footer: Footer,
+                main: Image
+            }
+        },
+        {
+            path: '/music', components: {
+                header: Header,
+                left: Left,
+                footer: Footer,
+                main: Music
+            }
+        },
+        {
+            path: '/blog/comment', components: {
+                header: Header,
+                left: Left,
+                footer: Footer,
+                main: Comment
+            }
+        },
+        {
+            path: '/user/userinfo', components: {
+                header: Header,
+                left: Left,
+                footer: Footer,
+                main: UserInfo
+            }
+        },
+        {
+            path: '/user/login', components: {
+                header: Header,
+                left: Left,
+                footer: Footer,
+                main: Login
+            }
+        },
+        {
+            path: '/user/register', components: {
+                header: Header,
+                left: Left,
+                footer: Footer,
+                main: Register
+            }
+        },
+
     ]
 })
 

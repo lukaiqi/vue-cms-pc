@@ -12,6 +12,12 @@ Vue.prototype.axios = axios
 axios.defaults.baseURL = 'https://lkqblog.cn/'
 // 引入router
 import router from './router.js'
+// 引入时间字符串格式化
+import moment from 'moment'
+// 全局过滤器
+Vue.filter('dateFormat', function (dateStr, pattern = "YYYY-MM-DD HH:mm") {
+    return moment(dateStr).format(pattern)
+})
 // 引入ElementUI
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
