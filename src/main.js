@@ -25,22 +25,30 @@ Vue.filter('dateFormat', function (dateStr, pattern = "YYYY-MM-DD HH:mm") {
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI);
+// 获取cookie的值初始化vuex
+var name = cookie.getCookie('name')
+var token = cookie.getCookie('token')
+var islogin = cookie.getCookie('islogin')
+// 引入vuex
 import Vuex from 'vuex'
 Vue.use(Vuex)
 // 实例化vuex
 const store = new Vuex.Store({
     state: {
-        name: '',
-        token: ''
+        name: name,
+        token: token,
+        islogin: 'true'
     },
     mutations: {
         login(state, obj) {
-           cookie.setCookie('name',obj.name),
-           cookie.setCookie('token',obj.token)
+            cookie.setCookie('name', obj.name,7),
+                cookie.setCookie('token', obj.token,7),
+                cookie.setCookie('islogin', 'true',7)
         },
-        logout(state){
+        logout(state) {
             cookie.delCookie('name'),
-            cookie.delCookie('token')
+                cookie.delCookie('token')
+            cookie.setCookie('islogin', 'false')
         }
     }
 })

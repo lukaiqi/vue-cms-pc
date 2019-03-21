@@ -1,27 +1,36 @@
 <template>
   <div>
-    <el-row class="tac">
-      <el-col :span="20">
-        <ul>
-          <li class="list" v-for="item in list" :key="item.id">
-            <router-link :to="'/blog/bloginfo/'+item.id">
-              <h3>{{item.title}}</h3>
-              <p class="info">
-                <span>发表时间：{{item.add_time|dateFormat}}</span>
-                <span>点击数{{item.click_num}}</span>
-              </p>
-            </router-link>
-          </li>
-        </ul>
+    <el-row>
+      <el-col :span="6" v-for="item in list" :key="item.id">
+        <router-link :to="'/blog/bloginfo/'+item.id">
+          <div class="list">
+            <h3>{{item.title}}</h3>
+            <p>
+              <span>发表时间：{{item.add_time|dateFormat}}</span>
+            </p>
+            <span>点击数{{item.click_num}}</span>
+            <span>评论数{{item.comment_num}}</span>
+          </div>
+        </router-link>
       </el-col>
     </el-row>
+    <div class="page">
+      <el-pagination
+        background
+        layout="prev, pager, next"
+        @current-change="handleCurrentChange"
+        :total="count"
+      ></el-pagination>
+    </div>
   </div>
 </template>
 <script>
 export default {
   data() {
     return {
-      list: []
+      list: [],
+      count: 0,
+      currentPage: 1
     };
   },
   created() {
@@ -29,21 +38,30 @@ export default {
   },
   methods: {
     getlist() {
-      this.axios.get("api/list").then(res => {
-        this.list = res.data.results;
-      });
+      this.axios
+        .get("api/list/?ordering=-add_time&page=" + this.currentPage)
+        .then(res => {
+          this.list = res.data.results;
+          this.count = res.data.count;
+        });
+    },
+    handleCurrentChange(currentPage) {
+      //页码变化的回调
+      this.currentPage = currentPage;
+      this.getlist();
     }
   }
 };
 </script>
 <style>
-.list {
-  border-radius: 4px;
-  background-color: rgb(93, 155, 236);
-  list-style: none;
+.page {
+  text-align: center;
+  margin-top: 30px;
 }
-.info{
-  display: flex;
-  justify-content: space-between
+.list {
+  color: black;
+  background-color: #ccc;
+  width: 80%;
+  height: 150px;
 }
 </style>

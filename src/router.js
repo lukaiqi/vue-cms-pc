@@ -9,7 +9,6 @@ import UserInfo from './components/main/user/UserInfo.vue'
 import Login from './components/main/user/Login.vue'
 import Register from './components/main/user/Register.vue'
 import Header from './components/common/Header.vue'
-import Left from './components/common/Left.vue'
 import Footer from './components/common/Footer.vue'
 var router = new VueRouter({
     routes: [
@@ -17,23 +16,20 @@ var router = new VueRouter({
         {
             path: '/blog/bloglist', components: {
                 header: Header,
-                left: Left,
                 footer: Footer,
                 main: BlogList
             }
         },
         {
-            path: '/blog/bloginfo', components: {
+            path: '/blog/bloginfo/:id', components: {
                 header: Header,
-                left: Left,
                 footer: Footer,
                 main: BlogInfo
             }
         },
         {
-            path: '/image', components: {
+            path: '/image/:id', components: {
                 header: Header,
-                left: Left,
                 footer: Footer,
                 main: Image
             }
@@ -41,7 +37,6 @@ var router = new VueRouter({
         {
             path: '/music', components: {
                 header: Header,
-                left: Left,
                 footer: Footer,
                 main: Music
             }
@@ -49,7 +44,6 @@ var router = new VueRouter({
         {
             path: '/blog/comment', components: {
                 header: Header,
-                left: Left,
                 footer: Footer,
                 main: Comment
             }
@@ -57,7 +51,6 @@ var router = new VueRouter({
         {
             path: '/user/userinfo', components: {
                 header: Header,
-                left: Left,
                 footer: Footer,
                 main: UserInfo
             }
@@ -65,7 +58,6 @@ var router = new VueRouter({
         {
             path: '/user/login', components: {
                 header: Header,
-                left: Left,
                 footer: Footer,
                 main: Login
             }
@@ -73,12 +65,10 @@ var router = new VueRouter({
         {
             path: '/user/register', components: {
                 header: Header,
-                left: Left,
                 footer: Footer,
                 main: Register
             }
-        },
-
+        }
     ]
 })
 
