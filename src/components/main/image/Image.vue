@@ -1,10 +1,18 @@
 <template>
   <div>
-    <ul>
-      <li v-for="image in imagelist" :key="image.id">
+    <el-row>
+      <el-col :span="6" v-for="image in imagelist" :key="image.id">
         <img :src="image.image_url" alt="图片获取失败">
-      </li>
-    </ul>
+      </el-col>
+    </el-row>
+    <div class="page">
+      <el-pagination
+        background
+        layout="prev, pager, next"
+        @current-change="handleCurrentChange"
+        :total="count"
+      ></el-pagination>
+    </div>
   </div>
 </template>
 <script>
@@ -12,7 +20,9 @@ export default {
   data() {
     return {
       imagelist: [],
-      id: this.$route.params.id
+      id: this.$route.params.id,
+      currentPage: 1,
+      count:0
     };
   },
   created() {
@@ -20,17 +30,33 @@ export default {
   },
   methods: {
     getimagebytypeid() {
-        console.log(this.$route)
-      this.axios.get("api/images/?image_type=" + this.id).then(res => {
+      console.log(this.$route);
+      this.axios.get("api/images/?image_type=" + this.id+'&page='+this.currentPage).then(res => {
         this.imagelist = res.data.results;
+        this.count=res.data.count
       });
+    },
+    handleCurrentChange(currentPage) {
+      //页码变化的回调
+      this.currentPage = currentPage;
+      this.getlist();
     }
   },
   watch: {
     "$route.path": function(newVal) {
-        // 监听路由变化获取新的数据
-        this.$router.go(0)
+      // 监听路由变化获取新的数据
+      this.$router.go(0);
     }
   }
 };
 </script>
+<style>
+img {
+  height: 400px;
+  margin: 10px;
+}
+.page {
+  text-align: center;
+  margin-top: 30px;
+}
+</style>

@@ -53,7 +53,8 @@ export default {
   }
 };
 </script>
-<style>
+
+<style scoped>
 .page {
   text-align: center;
   margin-top: 30px;
