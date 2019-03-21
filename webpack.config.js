@@ -20,6 +20,16 @@ module.exports = {
     module: { //匹配所有第三方模块，加载器
         rules: [ //所有第三方模块的匹配规则
             { test: /\.css$/, use: ['style-loader', 'css-loader'] }, //处理.css文件的规则
+            {
+                test: /\.scss$/,
+                use: [{
+                    loader: "style-loader" // creates style nodes from JS strings
+                }, {
+                    loader: "css-loader" // translates CSS into CommonJS
+                }, {
+                    loader: "sass-loader" // compiles Sass to CSS
+                }]
+            },
             { test: /\.(jpg|png|jpeg|bmp|gif)$/, use: 'url-loader?limit=1000&name=[hash:8]-[name].[ext]' }, //处理图片路径
             // limit：如果给定的图片大于或等于给定的值啧不会被转成bse64
             { test: /\.(eot|svg|ttf|woff|woff2)$/, use: 'url-loader' },   //处理字体文件的loader

@@ -39,7 +39,7 @@ export default {
     handleCurrentChange(currentPage) {
       //页码变化的回调
       this.currentPage = currentPage;
-      this.getlist();
+      this.getimagebytypeid();
     }
   },
   watch: {
