@@ -50,7 +50,7 @@ export default {
   }
 };
 </script>
-<style>
+<style scoped>
 img {
   height: 400px;
   margin: 10px;
