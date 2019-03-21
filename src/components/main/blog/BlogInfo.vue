@@ -6,6 +6,8 @@
       <span>点击数{{info.click_num}}</span>
     </p>
     <div v-html="info.content"></div>
+    <i class="el-icon-star-off" v-if="flag">点个赞</i>
+    <i class="el-icon-star-on" v-if="!flag">赞过了</i>
     <comment-box></comment-box>
   </div>
 </template>
@@ -15,7 +17,8 @@ export default {
   data() {
     return {
       info: "",
-      id: this.$route.params.id
+      id: this.$route.params.id,
+      flag:false
     };
   },
   created() {
