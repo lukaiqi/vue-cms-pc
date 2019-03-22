@@ -4,6 +4,7 @@
     <hr>
     <textarea v-model="msg" placeholder="请输入要评论的内容（最多120字）" maxlength="120"></textarea>
     <p class="status" v-if="islogin">{{this.$store.state.name}}: 欢迎评论</p>
+
     <p class="status" v-if="!islogin">请登录后再评论</p>
     <el-button type="primary" size="large" @click="postcomment">发表评论</el-button>
     <ul>
@@ -38,6 +39,13 @@ export default {
   },
   methods: {
     getCommentList() {
+      // 判断是否登陆
+      if(this.islogin==='true'){
+        this.islogin=true
+      }
+      else{
+        this.islogin=false
+      }
       this.axios
         .get(
           "api/comment/?ordering=-add_time&title=" +
@@ -51,7 +59,8 @@ export default {
         });
     },
     postcomment() {
-      if (this.islogin === null) {
+      console.log(this.islogin)
+      if (this.islogin === 'false') {
         return alert("未登录不能评论");
       }
       if (this.msg.trim().length == 0) {
@@ -61,7 +70,7 @@ export default {
         method: "post",
         url: "api/comment/",
         headers: {
-          Authorization: "JWT " + this.cookie.getCookie("token")
+          Authorization: "JWT " + this.$store.state.token
         },
         data: {
           csrfmiddlewaretoken:

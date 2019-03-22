@@ -23,7 +23,7 @@
       <el-form-item label="邮箱">
         <el-input v-model="info.email"></el-input>
       </el-form-item>
-      <el-form-item label="电话">
+      <el-form-item label="电话" required>
         <el-input v-model="info.mobile" :disabled="true"></el-input>
       </el-form-item>
       <el-form-item>
@@ -37,7 +37,8 @@
 export default {
   data() {
     return {
-      info: ""
+      info: "",
+      islogin: this.$store.state.islogin
     };
   },
   created() {
@@ -45,24 +46,28 @@ export default {
   },
   methods: {
     getinfo() {
-      this.axios({
-        url: "api/users/1",
-        method: "get",
-        headers: {
-          Authorization:
-            "JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozMCwidXNlcm5hbWUiOiIxODc4MDYzODg0NyIsImV4cCI6MTU1MzI1NjYyNSwiZW1haWwiOm51bGx9.eIe5sAqVt94teMKbQNWjfGpjccQyUSQL3nyk8odiXL0"
-        }
-      }).then(res => {
-        this.info = res.data;
-      });
+      console.log(this.$store.state.token)
+      if (this.islogin === "true") {
+        this.axios({
+          url: "api/users/1",
+          method: "get",
+          headers: {
+            Authorization: "JWT " + this.$store.state.token
+          }
+        }).then(res => {
+          this.info = res.data;
+        });
+      }
+      else{
+        this.$router.push('/user/login')
+      }
     },
     changeinfo() {
       this.axios({
         url: "api/users/1/",
         method: "patch",
         headers: {
-          Authorization:
-            "JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozMCwidXNlcm5hbWUiOiIxODc4MDYzODg0NyIsImV4cCI6MTU1MzI1NjYyNSwiZW1haWwiOm51bGx9.eIe5sAqVt94teMKbQNWjfGpjccQyUSQL3nyk8odiXL0"
+          Authorization: "JWT " + this.$store.state.token
         },
         data: {
           name: this.info.name,
@@ -71,14 +76,14 @@ export default {
           email: this.info.email
         }
       }).then(res => {
-          alert('修改成功')
+        alert("修改成功");
       });
     },
-    logout(){
-        this.$store.commit('logout')
-        setTimeout(() => {
-          this.$router.push('/user/login')
-        }, 1000);
+    logout() {
+      this.$store.commit("logout");
+      setTimeout(() => {
+        this.$router.push("/user/login");
+      }, 1000);
     }
   }
 };

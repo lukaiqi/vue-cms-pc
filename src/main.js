@@ -37,18 +37,22 @@ const store = new Vuex.Store({
     state: {
         name: name,
         token: token,
-        islogin: 'true'
+        islogin: islogin
     },
     mutations: {
         login(state, obj) {
-            cookie.setCookie('name', obj.name,7),
-                cookie.setCookie('token', obj.token,7),
-                cookie.setCookie('islogin', 'true',7)
+            cookie.setCookie('name', obj.name, 7)
+            cookie.setCookie('token', obj.token, 7)
+            cookie.setCookie('islogin', 'true', 7)
+            state.name=obj.name
+            state.token=obj.token
+            state.islogin = 'true'
         },
         logout(state) {
-            cookie.delCookie('name'),
-                cookie.delCookie('token')
+            cookie.delCookie('name')
+            cookie.delCookie('token')
             cookie.setCookie('islogin', 'false')
+            state.islogin = 'false'
         }
     }
 })

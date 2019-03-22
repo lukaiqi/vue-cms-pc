@@ -9,7 +9,7 @@
         <el-input v-model="password" clearable show-password></el-input>
       </el-form-item>
       <el-button type="primary" @click="login" :loading="flag">登录</el-button>
-      <el-button type="warning">注册</el-button>
+      <el-button type="warning" @click="reg">注册</el-button>
     </el-form>
   </div>
 </template>
@@ -48,8 +48,11 @@ export default {
               this.$router.push("/user/userinfo");
             }, 1000);
           }
-        });
+        })
       }
+    },
+    reg(){
+      this.$route.push('/user/register')
     }
   }
 };
