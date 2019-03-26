@@ -8,6 +8,7 @@
       <el-form-item label="密码">
         <el-input v-model="password" clearable show-password></el-input>
       </el-form-item>
+      <a :href="auth_url">使用微博登录</a>
       <el-button type="primary" @click="login" :loading="flag">登录</el-button>
       <el-button type="warning" @click="reg">注册</el-button>
     </el-form>
@@ -19,9 +20,13 @@ export default {
     return {
       username: "",
       password: "",
-      flag: false
+      flag: false,
+      auth_url: ""
     };
   },
+  // created() {
+  //   this.oauth();
+  // },
   methods: {
     login() {
       if (this.username === "") {
@@ -41,19 +46,28 @@ export default {
             this.flag = true;
             setTimeout(() => {
               this.flag = false;
-              this.$store.commit('login',{
+              this.$store.commit("login", {
+                userid: res.data.userid,
                 name: this.username,
                 token: res.data.token
               });
               this.$router.push("/user/userinfo");
             }, 1000);
           }
-        })
+        });
       }
     },
-    reg(){
-      this.$route.push('/user/register')
+    reg() {
+      this.$router.push("/user/bind");
+    },
+    oauth() {
+      this.axios.get("weibologin").then(res => {
+        this.auth_url = res.data;
+      });
     }
-  }
+  },
+  mounted() {
+    this.oauth()
+  },
 };
 </script>

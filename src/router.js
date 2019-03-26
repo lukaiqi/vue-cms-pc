@@ -10,9 +10,15 @@ import Login from './components/main/user/Login.vue'
 import Register from './components/main/user/Register.vue'
 import Header from './components/common/Header.vue'
 import Footer from './components/common/Footer.vue'
+import Bind from './components/main/user/userbind.vue'
+import Test from './components/main/user/test.vue'
+import Oauth from './components/main/user/oauth.vue'
 var router = new VueRouter({
+    mode: 'history',
     routes: [
-        { path: '/', redirect: '/blog/bloglist' },
+        {
+            path: '/', redirect: '/blog/bloglist'
+        },
         {
             path: '/blog/bloglist', components: {
                 header: Header,
@@ -68,7 +74,21 @@ var router = new VueRouter({
                 footer: Footer,
                 main: Register
             }
-        }
+        },
+        {
+            path: '/user/oauth', components: {
+                header: Header,
+                footer: Footer,
+                main: Oauth
+            }
+        },
+        {
+            path: '/user/bind', components: {
+                header: Header,
+                footer: Footer,
+                main: Bind
+            }
+        },
     ]
 })
 

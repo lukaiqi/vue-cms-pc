@@ -1,8 +1,8 @@
 <template>
   <div>
     <el-form ref="form" label-width="80px">
-      <el-form-item label="用户名">
-        <el-input v-model="info.name"></el-input>
+      <el-form-item label="昵称">
+        <el-input v-model="info.name" placeholder="请设置昵称"></el-input>
       </el-form-item>
       <el-form-item label="性别">
         <template>
@@ -37,6 +37,7 @@
 export default {
   data() {
     return {
+      userid: this.$store.state.userid,
       info: "",
       islogin: this.$store.state.islogin
     };
@@ -46,10 +47,9 @@ export default {
   },
   methods: {
     getinfo() {
-      console.log(this.$store.state.token)
       if (this.islogin === "true") {
         this.axios({
-          url: "api/users/1",
+          url: "api/users/" + this.userid,
           method: "get",
           headers: {
             Authorization: "JWT " + this.$store.state.token
@@ -57,9 +57,8 @@ export default {
         }).then(res => {
           this.info = res.data;
         });
-      }
-      else{
-        this.$router.push('/user/login')
+      } else {
+        this.$router.push("/user/login");
       }
     },
     changeinfo() {

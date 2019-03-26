@@ -4,16 +4,22 @@ const htmlwebpackplugin = require('html-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 // 向外暴露一个配置对象
 module.exports = {
-    entry: './src/main.js', //入口文件，源文件名字
-    output: {
-        path: path.join(__dirname, './dist'),    //出口，目标文件路径
-        filename: 'bundle.js'
+    // entry: './src/main.js', //入口文件，源文件名字
+    // output: {
+    //     path: path.join(__dirname, '/dist'),    //出口，目标文件路径
+    //     filename: 'bundle.js'
+    // },
+    devServer: {
+        historyApiFallback:true,
+        hot: true,
+        port: 8888,
     },
     plugins: [
         new htmlwebpackplugin({
             // 创建一个在内存中生成html页面的插件
             template: './src/index.html',
-            filename: 'index.html'
+            filename: 'index.html',
+            inject:false
         }),
         new VueLoaderPlugin(),
     ],
