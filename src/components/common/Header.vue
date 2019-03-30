@@ -34,7 +34,7 @@ export default {
     };
   },
   created() {
-    this.activeIndex = this.cookie.getCookie("tabindex");
+    this.activeIndex = this.cookie.getCookie("tabindex"); //刷新之后获取索引
   },
   methods: {
     gettags() {
@@ -43,22 +43,25 @@ export default {
       });
     },
     handleSelect(index) {
-      this.cookie.setCookie("tabindex", index);
+      this.activeIndex = index; //设置高亮索引
+      this.cookie.setCookie('tabindex',index)
     }
   },
   mounted() {
     this.gettags();
+    if (this.$route.path === "/") {
+      //高亮回到文章
+      this.activeIndex = "1";
+    }
   }
 };
 </script>
+
 <style lang="scss" scoped>
 a:hover {
   color: orange !important;
 }
 a {
   text-decoration: none;
-}
-div {
-  line-height: 60px;
 }
 </style>

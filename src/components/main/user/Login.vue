@@ -99,8 +99,4 @@ export default {
 .commit {
   margin: 0 102px;
 }
-// .login{
-//   width: 40%;
-//   height: 40%;
-// }
 </style>

@@ -12,7 +12,7 @@
         v-loading="loading"
         element-loading-text="拼命加载中"
         element-loading-spinner="el-icon-loading"
-        
+        element-loading-background="rgba(255 , 255, 255, 0.4)"
       >
         <img :src="image.image_url" alt="图片获取失败" @load="imgloading">
       </el-col>
