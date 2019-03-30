@@ -1,15 +1,27 @@
 <template>
   <div>
     <el-row>
-      <el-col :span="6" v-for="image in imagelist" :key="image.id">
-        <img :src="image.image_url" alt="图片获取失败">
+      <el-col
+        :xs="24"
+        :sm="12"
+        :md="8"
+        :lg="6"
+        :xl="3"
+        v-for="image in imagelist"
+        :key="image.id"
+        v-loading="loading"
+        element-loading-text="拼命加载中"
+        element-loading-spinner="el-icon-loading"
+        
+      >
+        <img :src="image.image_url" alt="图片获取失败" @load="imgloading">
       </el-col>
     </el-row>
     <div class="page">
       <el-pagination
         background
         layout="prev, pager, next"
-        :page-size='20'
+        :page-size="20"
         @current-change="handleCurrentChange"
         :total="count"
       ></el-pagination>
@@ -23,7 +35,8 @@ export default {
       imagelist: [],
       id: this.$route.params.id,
       currentPage: 1,
-      count:0
+      count: 0,
+      loading: true
     };
   },
   created() {
@@ -31,16 +44,20 @@ export default {
   },
   methods: {
     getimagebytypeid() {
-      console.log(this.$route);
-      this.axios.get("api/images/?image_type=" + this.id+'&page='+this.currentPage).then(res => {
-        this.imagelist = res.data.results;
-        this.count=res.data.count
-      });
+      this.axios
+        .get("api/images/?image_type=" + this.id + "&page=" + this.currentPage)
+        .then(res => {
+          this.imagelist = res.data.results;
+          this.count = res.data.count;
+        });
     },
     handleCurrentChange(currentPage) {
       //页码变化的回调
       this.currentPage = currentPage;
       this.getimagebytypeid();
+    },
+    imgloading() {
+      this.loading = false;
     }
   },
   watch: {

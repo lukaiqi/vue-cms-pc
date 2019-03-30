@@ -36,8 +36,8 @@ module.exports = {
                     loader: "sass-loader" // compiles Sass to CSS
                 }]
             },
-            { test: /\.(jpg|png|jpeg|bmp|gif)$/, use: 'url-loader?limit=1000&name=[hash:8]-[name].[ext]' }, //处理图片路径
-            // limit：如果给定的图片大于或等于给定的值啧不会被转成bse64
+            { test: /\.(jpg|png|jpeg|bmp|gif)$/, use: 'url-loader?limit=1000&name=images/[hash:8]-[name].[ext]' }, //处理图片路径
+            // limit：如果给定的图片大于或等于给定的值则不会被转成bse64
             { test: /\.(eot|svg|ttf|woff|woff2)$/, use: 'url-loader' },   //处理字体文件的loader
             { test: /\.js$/, use: 'babel-loader', exclude: /node_modules/ },  //配置babel-loader
             { test: /\.vue$/, use: 'vue-loader' },

@@ -59,7 +59,6 @@ export default {
         });
     },
     postcomment() {
-      console.log(this.islogin)
       if (this.islogin === 'false') {
         return alert("未登录不能评论");
       }

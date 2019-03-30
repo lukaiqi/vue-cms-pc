@@ -41,7 +41,9 @@ const store = new Vuex.Store({
         name: name,
         token: token,
         islogin: islogin,
-        oauthinfo: ''
+        oauthinfo: '',
+        oauthtype: '',
+        openid: '',
     },
     mutations: {
         login(state, obj) {
@@ -61,9 +63,18 @@ const store = new Vuex.Store({
             cookie.setCookie('islogin', 'false')
             state.islogin = 'false'
         },
-        newoauth(state, obj) {
+        weibonewoauth(state, obj) {
             state.oauthinfo = obj
-
+            state.oauthtype = 'weibo'
+        },
+        qqnewoauth(state, obj) {
+            state.oauthinfo = obj.userinfo
+            state.oauthtype = 'qq'
+            state.openid = obj.openid
+        },
+        githubnewoauth(state, obj) {
+            state.oauthinfo = obj.userinfo
+            state.oauthtype = 'github'
         },
         oldoauth(state, obj) {
             state.name = obj.name

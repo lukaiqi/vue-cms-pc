@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-form ref="form" label-width="80px">
+    <el-form ref="form" label-width="70px">
       <el-form-item label="昵称">
         <el-input v-model="info.name" placeholder="请设置昵称"></el-input>
       </el-form-item>
@@ -11,14 +11,13 @@
         </template>
       </el-form-item>
       <el-form-item label="出生日期">
-        <el-col :span="11">
-          <el-date-picker
-            type="date"
-            placeholder="选择日期"
-            v-model="info.birthday"
-            style="width: 100%;"
-          ></el-date-picker>
-        </el-col>
+        <el-date-picker
+          type="date"
+          value-format="yyyy-MM-dd"
+          placeholder="选择日期"
+          v-model="info.birthday"
+          style="width: 100%;"
+        ></el-date-picker>
       </el-form-item>
       <el-form-item label="邮箱">
         <el-input v-model="info.email"></el-input>
@@ -63,7 +62,7 @@ export default {
     },
     changeinfo() {
       this.axios({
-        url: "api/users/1/",
+        url: "api/users/" + this.userid + "/",
         method: "patch",
         headers: {
           Authorization: "JWT " + this.$store.state.token

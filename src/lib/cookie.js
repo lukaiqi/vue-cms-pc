@@ -3,18 +3,20 @@
 //当然，如果session保存到vuex的话除外
 //全局引入vue
 var cookie = {
-  setCookie(c_name, value, expiredays) {
-    var exdate = new Date();
-    exdate.setTime(exdate.getTime() + expiredays);
-    exdate.setDate(exdate.getDate() + expiredays);
-    document.cookie = c_name + "=" + escape(value) + ((expiredays == null) ? "" : ";expires=" + exdate.toGMTString());
+  setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    var expires = "expires=" + d.toGMTString();
+    document.cookie = cname + "=" + cvalue + "; " + expires+";path=/";
   },
-  getCookie(name) {
-    var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
-    if (arr = document.cookie.match(reg))
-      return (arr[2]);
-    else
-      return null;
+  getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+      var c = ca[i].trim();
+      if (c.indexOf(name) == 0) { return c.substring(name.length, c.length); }
+    }
+    return "";
   },
   delCookie(name) {
     var exp = new Date();

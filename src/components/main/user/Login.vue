@@ -1,16 +1,31 @@
 <template>
   <div>
-    <div style="margin: 20px;"></div>
-    <el-form label-position="left" label-width="80px">
+    <el-form label-position="left" label-width="70px">
       <el-form-item label="用户名">
         <el-input v-model="username" clearable></el-input>
       </el-form-item>
       <el-form-item label="密码">
         <el-input v-model="password" clearable show-password></el-input>
       </el-form-item>
-      <a :href="auth_url">使用微博登录</a>
-      <el-button type="primary" @click="login" :loading="flag">登录</el-button>
-      <el-button type="warning" @click="reg">注册</el-button>
+
+      <div class="commit">
+        <el-button type="primary" @click="login" :loading="flag">登录</el-button>
+        <el-button type="warning" @click="reg">注册</el-button>
+        <p>
+          <span>其他登录方式:&nbsp;</span>
+          <a :href="weibo_auth_url">
+            <img src="https://lkqblog.cn/media/weibo.png" alt="weibo">
+          </a>
+          &nbsp;
+          <a :href="qq_auth_url">
+            <img src="https://lkqblog.cn/media/qq.png" alt="qq">
+          </a>
+          &nbsp;
+          <a :href="github_auth_url">
+            <img src="https://lkqblog.cn/media/github.png" alt="github">
+          </a>
+        </p>
+      </div>
     </el-form>
   </div>
 </template>
@@ -21,12 +36,11 @@ export default {
       username: "",
       password: "",
       flag: false,
-      auth_url: ""
+      weibo_auth_url: "",
+      qq_auth_url: "",
+      github_auth_url: ""
     };
   },
-  // created() {
-  //   this.oauth();
-  // },
   methods: {
     login() {
       if (this.username === "") {
@@ -60,14 +74,33 @@ export default {
     reg() {
       this.$router.push("/user/bind");
     },
-    oauth() {
+    weibo_url() {
       this.axios.get("weibologin").then(res => {
-        this.auth_url = res.data;
+        this.weibo_auth_url = res.data;
+      });
+    },
+    qq_url() {
+      this.axios.get("qqlogin").then(res => {
+        this.qq_auth_url = res.data;
+      });
+    },
+    github_url() {
+      this.axios.get("githublogin").then(res => {
+        this.github_auth_url = res.data;
       });
     }
   },
   mounted() {
-    this.oauth()
-  },
+    this.weibo_url(), this.qq_url(), this.github_url();
+  }
 };
 </script>
+<style lang="scss">
+.commit {
+  margin: 0 102px;
+}
+// .login{
+//   width: 40%;
+//   height: 40%;
+// }
+</style>

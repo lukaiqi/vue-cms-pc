@@ -11,81 +11,84 @@ import Register from './components/main/user/Register.vue'
 import Header from './components/common/Header.vue'
 import Footer from './components/common/Footer.vue'
 import Bind from './components/main/user/userbind.vue'
-import Test from './components/main/user/test.vue'
 import Oauth from './components/main/user/oauth.vue'
 var router = new VueRouter({
     mode: 'history',
     routes: [
         {
-            path: '/', redirect: '/blog/bloglist'
+            path: '/', components: {
+                header: Header,
+                // footer: Footer,
+                main: BlogList
+            }
         },
         {
             path: '/blog/bloglist', components: {
                 header: Header,
-                footer: Footer,
+                // footer: Footer,
                 main: BlogList
             }
         },
         {
             path: '/blog/bloginfo/:id', components: {
                 header: Header,
-                footer: Footer,
+                // footer: Footer,
                 main: BlogInfo
             }
         },
         {
             path: '/image/:id', components: {
                 header: Header,
-                footer: Footer,
+                // footer: Footer,
                 main: Image
             }
         },
         {
             path: '/music', components: {
                 header: Header,
-                footer: Footer,
+                // footer: Footer,
                 main: Music
             }
         },
         {
             path: '/blog/comment', components: {
                 header: Header,
-                footer: Footer,
+                // footer: Footer,
                 main: Comment
             }
         },
         {
             path: '/user/userinfo', components: {
                 header: Header,
-                footer: Footer,
+                // footer: Footer,
                 main: UserInfo
             }
         },
         {
             path: '/user/login', components: {
                 header: Header,
-                footer: Footer,
+                // footer: Footer,
                 main: Login
             }
         },
         {
             path: '/user/register', components: {
                 header: Header,
-                footer: Footer,
+                // footer: Footer,
                 main: Register
             }
         },
         {
             path: '/user/oauth', components: {
                 header: Header,
-                footer: Footer,
+                // footer: Footer,
                 main: Oauth
             }
         },
         {
             path: '/user/bind', components: {
                 header: Header,
-                footer: Footer,
+                // footer: Footer,
                 main: Bind
             }
         },

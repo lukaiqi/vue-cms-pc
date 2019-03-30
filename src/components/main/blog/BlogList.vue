@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-row>
-      <el-col :span="6" v-for="item in list" :key="item.id">
+      <el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="3" v-for="item in list" :key="item.id">
         <router-link :to="'/blog/bloginfo/'+item.id">
           <div class="list">
             <h3>{{item.title}}</h3>
@@ -61,9 +61,16 @@ export default {
   margin-top: 30px;
 }
 .list {
-  color: black;
-  background-color: #ccc;
+  color: #3681b3;
+  border: 10px solid rgb(1, 130, 252);
+  border-radius: 20px;
   width: 80%;
   height: 150px;
+  margin: 10px auto;
+  text-align: center;
+  box-shadow: 3px 3px 3px 3px rgba(54, 152, 243, 0.5)
+}
+a {
+  text-decoration: none;
 }
 </style>
