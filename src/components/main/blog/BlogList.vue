@@ -1,19 +1,21 @@
 <template>
   <div>
-    <el-row>
-      <el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="3" v-for="item in list" :key="item.id">
-        <router-link :to="'/blog/bloginfo/'+item.id">
+    <div class="down container clearfix">
+      <ul>
+        <li v-for="item in list" :key="item.id">
           <div class="list">
-            <h3>{{item.title}}</h3>
+            <h3>
+              <router-link :to="'/blog/bloginfo/'+item.id">{{item.title}}</router-link>
+            </h3>
             <p>
               <span>发表时间：{{item.add_time|dateFormat}}</span>
             </p>
             <span>点击数{{item.click_num}}</span>
             <span>评论数{{item.comment_num}}</span>
           </div>
-        </router-link>
-      </el-col>
-    </el-row>
+        </li>
+      </ul>
+    </div>
     <div class="page">
       <el-pagination
         background
@@ -54,23 +56,29 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-.page {
-  text-align: center;
-  margin-top: 30px;
-}
-.list {
-  color: #3681b3;
-  border: 10px solid rgb(1, 130, 252);
-  border-radius: 20px;
-  width: 80%;
+<style lang="scss" scoped>
+.down li {
+  width: 20%;
+  background-color: #ddd;
+  border-radius: 15px;
   height: 150px;
-  margin: 10px auto;
+  margin: 20px;
+  display: block;
   text-align: center;
-  box-shadow: 3px 3px 3px 3px rgba(54, 152, 243, 0.5)
+  box-shadow: 0 3px 3px 3px rgba(0, 0, 0, 0.5);
+  box-sizing: border-box;
+  float: left;
 }
-a {
-  text-decoration: none;
+.down h3 {
+  color: #fd56ee;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  white-space: nowrap; /* 首先先需要添加这句话 强制一行*/
+  overflow: hidden; /* 其次必须有这句话 */
+  text-overflow: ellipsis; /* 超出的部分，省略号代替 */
 }
+.down p {
+  margin-bottom: 18px;
+}
+
 </style>

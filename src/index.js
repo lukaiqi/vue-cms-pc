@@ -31,6 +31,7 @@ var userid = cookie.getCookie('userid')
 var name = cookie.getCookie('name')
 var token = cookie.getCookie('token')
 var islogin = cookie.getCookie('islogin')
+import './base.css'
 // 引入vuex
 import Vuex from 'vuex'
 Vue.use(Vuex)

@@ -1,11 +1,13 @@
 <template>
   <div>
-    <h3>{{info.title}}</h3>
-    <p>
-      <span>发表时间{{info.add_time}}</span>
-      <span>点击数{{info.click_num}}</span>
-    </p>
-    <div v-html="info.content"></div>
+    <div class="down">
+      <h3>{{info.title}}</h3>
+      <p>
+        <span>发表时间{{info.add_time}}</span>
+        <span>点击数{{info.click_num}}</span>
+      </p>
+      <div v-html="info.content"></div>
+    </div>
     <comment-box></comment-box>
   </div>
 </template>
@@ -34,3 +36,4 @@ export default {
   }
 };
 </script>
+

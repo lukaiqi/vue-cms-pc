@@ -1,7 +1,6 @@
 <template>
   <div>
-    <div style="margin: 20px;"></div>
-    <el-form label-position="left" label-width="80px">
+    <el-form label-position="left" label-width="80px" class="down">
       <el-form-item label="手机号">
         <el-input v-model="mobile" clearable></el-input>
       </el-form-item>

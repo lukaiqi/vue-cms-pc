@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-form ref="form" label-width="70px">
+    <el-form ref="form" label-width="70px" class="down">
       <el-form-item label="昵称">
         <el-input v-model="info.name" placeholder="请设置昵称"></el-input>
       </el-form-item>

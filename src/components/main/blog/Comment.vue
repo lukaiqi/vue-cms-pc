@@ -1,5 +1,5 @@
 <template>
-  <div class="cmt-container">
+  <div>
     <h3>发表评论</h3>
     <hr>
     <textarea v-model="msg" placeholder="请输入要评论的内容（最多120字）" maxlength="120"></textarea>

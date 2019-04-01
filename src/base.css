@@ -1,0 +1,47 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    color: #fd56ee;
+    text-decoration: none;
+}
+
+a:hover {
+    color: blue;
+}
+
+.clearfix:before, .clearfix:after {
+    /* 清除浮动 */
+    display: table;
+    content: "";
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix {
+    *zoom: 1;
+}
+
+ul {
+    list-style: none;
+}
+
+.down {
+    margin-top: 70px;
+}
+
+.page {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.container {
+    width: 90%;
+    margin-bottom: 0;
+    margin-left: auto;
+    margin-right: auto
+}

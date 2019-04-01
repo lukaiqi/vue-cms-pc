@@ -1,22 +1,12 @@
 <template>
   <div>
-    <el-row>
-      <el-col
-        :xs="24"
-        :sm="12"
-        :md="8"
-        :lg="6"
-        :xl="3"
-        v-for="image in imagelist"
-        :key="image.id"
-        v-loading="loading"
-        element-loading-text="拼命加载中"
-        element-loading-spinner="el-icon-loading"
-        element-loading-background="rgba(255 , 255, 255, 0.4)"
-      >
-        <img :src="image.image_url" alt="图片获取失败" @load="imgloading">
-      </el-col>
-    </el-row>
+    <div class="clearfix  down">
+      <ul>
+        <li v-for="(image, index) in imagelist" :key="index">
+          <img :src="image.image_url" alt>
+        </li>
+      </ul>
+    </div>
     <div class="page">
       <el-pagination
         background
@@ -69,12 +59,19 @@ export default {
 };
 </script>
 <style scoped>
+
+ul li {
+  width: 200px;
+  height: 300px;
+  margin: 8px;
+  overflow: hidden;
+  border-radius: 15px;
+  box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.5);
+  float: left;
+}
 img {
-  height: 400px;
-  margin: 10px;
+  height: 300px;
+  float: left;
 }
-.page {
-  text-align: center;
-  margin-top: 30px;
-}
+
 </style>

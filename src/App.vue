@@ -1,19 +1,11 @@
 <template>
   <div>
-    <el-container>
       <!-- 顶部 -->
-      <el-header>
-        <router-view name="header"></router-view>
-      </el-header>
+      <router-view name="header"></router-view>
       <!-- 中间 -->
-      <el-main>
-        <router-view name="main"></router-view>
-      </el-main>
+      <router-view name="main"></router-view>
       <!-- 底部 -->
-      <el-footer>
-        <router-view name="footer"></router-view>
-      </el-footer>
-    </el-container>
+      <router-view name="footer"></router-view>
   </div>
 </template>
 

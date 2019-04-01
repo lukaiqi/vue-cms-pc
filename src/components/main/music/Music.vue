@@ -1,8 +1,8 @@
 <template>
   <div>
-    <el-row class="list">
+    <el-row class="down" >
       <el-col :xs="24" :sm="12" :md="8" :lg="6" v-for="music in  musiclist" :key="music.id">
-        <div class="list">
+        <div>
           <iframe
             frameborder="no"
             border="0"
@@ -53,12 +53,8 @@ export default {
   }
 };
 </script>
-<style>
-.list {
-  margin: 0 auto;
-}
-.page {
-  text-align: center;
-  margin-top: 30px;
+<style scoped>
+.el-col {
+  margin: 10px 0;
 }
 </style>

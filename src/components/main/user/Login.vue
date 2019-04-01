@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-form label-position="left" label-width="70px">
+    <el-form label-position="left" label-width="70px" class="down">
       <el-form-item label="用户名">
         <el-input v-model="username" clearable></el-input>
       </el-form-item>
@@ -14,15 +14,15 @@
         <p>
           <span>其他登录方式:&nbsp;</span>
           <a :href="weibo_auth_url">
-            <img src="https://lkqblog.cn/media/weibo.png" alt="weibo">
+            <img src="/src/images/weibo.png" alt="weibo">
           </a>
           &nbsp;
           <a :href="qq_auth_url">
-            <img src="https://lkqblog.cn/media/qq.png" alt="qq">
+            <img src="/src/images/qq.png" alt="qq">
           </a>
           &nbsp;
           <a :href="github_auth_url">
-            <img src="https://lkqblog.cn/media/github.png" alt="github">
+            <img src="/src/images/github.png" alt="github">
           </a>
         </p>
       </div>
@@ -95,7 +95,7 @@ export default {
   }
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .commit {
   margin: 0 102px;
 }
